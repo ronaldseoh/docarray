@@ -626,6 +626,7 @@ class QdrantDocumentIndex(BaseDocIndex, Generic[TSchema]):
         return rest.VectorParams(
             size=column_info.n_dim or column_info.config.get('dim'),
             distance=QDRANT_SPACE_MAPPING[column_info.config.get('space', 'cosine')],
+            hnsw_config=column_info.config.get('hnsw_config'),
         )
 
     def _convert_to_doc(
